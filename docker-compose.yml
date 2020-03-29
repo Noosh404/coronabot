@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-mongo}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password}
+      MONGO_INITDB_DATABASE: ${MONGO_DB:-corona}
+    ports:
+      - "27017:27107"
+    volumes:
+      - mongo_db:/data/db
+volumes:
+  mongo_db:
